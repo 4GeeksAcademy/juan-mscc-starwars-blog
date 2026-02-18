@@ -10,6 +10,7 @@ export const Home = () => {
 	return (
 		<div className="container text-center mt-5">
 			<CardList title="Characters"/>
+			<CardList title="Locations"/>
 		</div>
 	);
 }; 
