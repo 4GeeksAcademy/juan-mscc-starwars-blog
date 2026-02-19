@@ -17,22 +17,30 @@ export const Navbar = () => {
 					{/* <span className="navbar-brand mb-0 h1">React Boilerplate</span> */}
 				</Link>
 				<div className="ml-auto">
-					<Link to="/demo">
 					<div className="dropdown">
 						<button className="btn btn-primary dropdown-toggle" type='button' data-bs-toggle="dropdown" aria-expanded="false">
 							Favorites: <span className="bg-secondary border px-2">{store.favourites.length}</span>
 						</button>
 
 						<ul className="dropdown-menu">
-							{favsList.map((fav) => {
+							{store.favourites.map((fav) => {
 								return (
-									<li>{fav}</li>
+									<>
+										
+											<li className='d-flex justify-content-between px-2'>
+												<Link to="/"><span>{fav.name}</span></Link>
+
+												<i className="fa-solid fa-trash" onClick={() => dispatch({type: 'remove_favourite', payload: {name: fav.name} })}></i>
+											</li>									
+
+										
+									</>
 								)
 							})}
 						</ul>
 						
 					</div>
-					</Link>
+					
 				</div>
 			</div>
 		</nav>

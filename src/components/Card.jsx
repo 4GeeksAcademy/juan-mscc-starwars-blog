@@ -1,8 +1,8 @@
-import React, { useReducer, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { Link } from "react-router-dom";
 import useGlobalReducer from "../hooks/useGlobalReducer";
 
-export function Card({id, title, fields}) {
+export function Card({id, title, entity, endpoint, fields}) {
     
 
     const {store, dispatch} = useGlobalReducer()
@@ -10,9 +10,12 @@ export function Card({id, title, fields}) {
     const [favIcon, setFavIcon] = useState('regular')
 
     function manageFav() {
-        if(favIcon == 'regular'){
-            setFavIcon('solid')
-            dispatch({type: 'add_favourite'})
+        if(!store.favourites.some(entity => entity.name == title)){
+            //setFavIcon('solid')
+            dispatch({type: 'add_favourite', payload: {id: id, name: title, entity: entity}})
+        } else {
+            //setFavIcon('regular')
+            dispatch({type: 'remove_favourite', payload: {id: id, name: title, entity: entity}})
         }
         /* dispatch({type: 'add_favourite'})
         console.log(favIcon)
@@ -38,12 +41,12 @@ export function Card({id, title, fields}) {
                 <p className="card-text">Hair color: {info.hair_color}</p>*/}
 
                 <div className='d-flex justify-content-between'>
-                    <Link to='/' className="btn btn-primary">Go somewhere</Link>
+                    <Link to={'/' + endpoint + '/' + id} className="btn btn-primary">Details</Link>
                     <button 
                         className="btn btn-outline-warning" 
                         onClick={manageFav}>
 
-                            <i className={`fa-${favIcon} fa-heart`}></i>
+                            <i className={`fa-${store.favIcon} fa-heart`}></i>
 
                     </button>
                 </div>

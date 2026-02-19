@@ -18,8 +18,22 @@ export const Home = () => {
 					{ label: "Hair Color", key:'hair_color' }
 				]}
 			/>
-			{/* <CardList title="Locations"/> */}
-			{/* <CardList title="Vehicles"/> */}
+			<CardList 
+				title="Locations"
+				endpoint="planets"
+				fields={[
+					{ label: "Population", key:'population' },
+					{ label: "Terrain", key:'terrain' },
+				]}
+			/>
+			<CardList 
+				title="Vehicles"
+				endpoint="starships"
+				fields={[
+					{ label: "Crew", key:'crew' },
+					{ label: "Passengers", key:'passengers' },
+				]}
+			/>
 		</div>
 	);
 }; 
