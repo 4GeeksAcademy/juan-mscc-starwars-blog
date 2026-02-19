@@ -2,7 +2,7 @@ import React, { useReducer, useState } from "react";
 import { Link } from "react-router-dom";
 import useGlobalReducer from "../hooks/useGlobalReducer";
 
-export function Card({name, entitie, id}) {
+export function Card({info, name, entitie, id}) {
     
 
     const {store, dispatch} = useGlobalReducer()
@@ -18,9 +18,11 @@ export function Card({name, entitie, id}) {
     return (
         <div className="card" style={{minWidth: "18rem"}}>
             <img src="https://placehold.co/400" className="card-img-top" alt="..." />
-            <div className="card-body">
+            <div className="card-body text-start">
                 <h5 className="card-title">{name}</h5>
-                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+                <p className="card-text">Gender: {info.gender}</p>
+                <p className="card-text">Eye color: {info.eye_color}</p>
+                <p className="card-text">Hair color: {info.hair_color}</p>
                 <div className='d-flex justify-content-between'>
                     <Link to='/' className="btn btn-primary">Go somewhere</Link>
                     <button 
