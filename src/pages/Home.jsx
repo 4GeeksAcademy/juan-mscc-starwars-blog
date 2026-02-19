@@ -9,9 +9,17 @@ export const Home = () => {
 
 	return (
 		<div className="container text-center mt-5">
-			<CardList title="Characters"/>
-			<CardList title="Locations"/>
-			<CardList title="Vehicles"/>
+			<CardList 
+				title="Characters"
+				endpoint="people"
+				fields={[
+					{ label: "Gender", key:'gender' },
+					{ label: "Eye Color", key:'eye_color' },
+					{ label: "Hair Color", key:'hair_color' }
+				]}
+			/>
+			{/* <CardList title="Locations"/> */}
+			{/* <CardList title="Vehicles"/> */}
 		</div>
 	);
 }; 

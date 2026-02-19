@@ -1,7 +1,13 @@
 import StarWarsLogo from "../assets/img/starwars-logo.png";
 import { Link } from "react-router-dom";
+import useGlobalReducer from "../hooks/useGlobalReducer";
+import { useState } from "react";
 
 export const Navbar = () => {
+
+	const {store, dispatch} =useGlobalReducer()
+
+	const [favsList, setFavsList] = useState(store.favourites)
 
 	return (
 		<nav className="navbar navbar-light bg-light">
@@ -14,13 +20,15 @@ export const Navbar = () => {
 					<Link to="/demo">
 					<div className="dropdown">
 						<button className="btn btn-primary dropdown-toggle" type='button' data-bs-toggle="dropdown" aria-expanded="false">
-							Favorites: <span className="bg-secondary border px-2">0</span>
+							Favorites: <span className="bg-secondary border px-2">{store.favourites.length}</span>
 						</button>
 
 						<ul className="dropdown-menu">
-							<li>Action</li>
-							<li>Another action</li>
-							<li>Something else here</li>
+							{favsList.map((fav) => {
+								return (
+									<li>{fav}</li>
+								)
+							})}
 						</ul>
 						
 					</div>

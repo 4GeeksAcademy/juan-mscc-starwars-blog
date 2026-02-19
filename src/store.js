@@ -9,7 +9,7 @@ export default function storeReducer(store, action = {}) {
     case 'add_favourite':
 
       const favourite = action.payload
-
+      console.log(store.favourites)
       return {
         ...store,
         favourites: [...store.favourites, favourite]
