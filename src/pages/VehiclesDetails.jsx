@@ -4,14 +4,14 @@ import useGlobalReducer from "../hooks/useGlobalReducer";  // Import a custom ho
 
 
 
-export const CharacterDetails = (props) => {
+export const VehiclesDetails = (props) => {
 
     const { id } = useParams()
 
     const [ info, setInfo ] = useState({})
 
     useEffect(() => {
-        fetch('https://www.swapi.tech/api/people/' + id)
+        fetch('https://www.swapi.tech/api/starships/' + id)
         .then((resp) => {
             if (!resp.ok) {throw new Error ('Error when fetching the API')}
             return(resp.json())
@@ -20,9 +20,9 @@ export const CharacterDetails = (props) => {
             console.log(data.result.properties)
             setInfo ({
                 name: data.result.properties.name,
-                birth_year: data.result.properties.birth_year,
-                height: data.result.properties.height,
-                skin_color: data.result.properties.skin_color
+                cargo_capacity: data.result.properties.cargo_capacity,
+                length: data.result.properties.length,
+                cost_in_credits: data.result.properties.cost_in_credits
             })
             console.log(info)
         })
@@ -46,16 +46,16 @@ export const CharacterDetails = (props) => {
 
                 <div className="row border-top border-danger mt-3">
                     <div className="col">
-                        <h3>Birth Year</h3>
-                        <p>{info.birth_year}</p>
+                        <h3>Cargo Capacity</h3>
+                        <p>{info.cargo_capacity}</p>
                     </div>
                     <div className="col">
-                        <h3>Height</h3>
-                        <p>{info.height}</p>
+                        <h3>Length</h3>
+                        <p>{info.length}</p>
                     </div>
                     <div className="col">
-                        <h3>Skin color</h3>
-                        <p>{info.skin_color}</p>
+                        <h3>Cost in credits</h3>
+                        <p>{info.cost_in_credits}</p>
                     </div>
 
                 </div>

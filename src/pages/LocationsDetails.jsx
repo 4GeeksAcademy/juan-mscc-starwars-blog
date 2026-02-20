@@ -4,14 +4,14 @@ import useGlobalReducer from "../hooks/useGlobalReducer";  // Import a custom ho
 
 
 
-export const CharacterDetails = (props) => {
+export const LocationsDetails = (props) => {
 
     const { id } = useParams()
 
     const [ info, setInfo ] = useState({})
 
     useEffect(() => {
-        fetch('https://www.swapi.tech/api/people/' + id)
+        fetch('https://www.swapi.tech/api/planets/' + id)
         .then((resp) => {
             if (!resp.ok) {throw new Error ('Error when fetching the API')}
             return(resp.json())
@@ -20,9 +20,9 @@ export const CharacterDetails = (props) => {
             console.log(data.result.properties)
             setInfo ({
                 name: data.result.properties.name,
-                birth_year: data.result.properties.birth_year,
-                height: data.result.properties.height,
-                skin_color: data.result.properties.skin_color
+                climate: data.result.properties.climate,
+                population: data.result.properties.population,
+                rotation_period: data.result.properties.rotation_period
             })
             console.log(info)
         })
@@ -46,16 +46,16 @@ export const CharacterDetails = (props) => {
 
                 <div className="row border-top border-danger mt-3">
                     <div className="col">
-                        <h3>Birth Year</h3>
-                        <p>{info.birth_year}</p>
+                        <h3>Climate</h3>
+                        <p>{info.climate}</p>
                     </div>
                     <div className="col">
-                        <h3>Height</h3>
-                        <p>{info.height}</p>
+                        <h3>Population</h3>
+                        <p>{info.population}</p>
                     </div>
                     <div className="col">
-                        <h3>Skin color</h3>
-                        <p>{info.skin_color}</p>
+                        <h3>Rotation period</h3>
+                        <p>{info.rotation_period}</p>
                     </div>
 
                 </div>

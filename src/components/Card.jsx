@@ -7,15 +7,16 @@ export function Card({id, title, entity, endpoint, fields}) {
 
     const {store, dispatch} = useGlobalReducer()
 
-    const [favIcon, setFavIcon] = useState('regular')
+    const isFavourite = store.favourites.some(fav => fav.name == title)
 
     function manageFav() {
-        if(!store.favourites.some(entity => entity.name == title)){
-            //setFavIcon('solid')
-            dispatch({type: 'add_favourite', payload: {id: id, name: title, entity: entity}})
+        if(!isFavourite){
+            
+            dispatch({type: 'add_favourite', payload: {id, name: title, endpoint}})
+
         } else {
-            //setFavIcon('regular')
-            dispatch({type: 'remove_favourite', payload: {id: id, name: title, entity: entity}})
+            
+            dispatch({type: 'remove_favourite', payload: {id, name:title}})
         }
         /* dispatch({type: 'add_favourite'})
         console.log(favIcon)
@@ -46,7 +47,7 @@ export function Card({id, title, entity, endpoint, fields}) {
                         className="btn btn-outline-warning" 
                         onClick={manageFav}>
 
-                            <i className={`fa-${store.favIcon} fa-heart`}></i>
+                            <i className={`fa-${isFavourite ? 'solid' : 'regular'} fa-heart`}></i>
 
                     </button>
                 </div>

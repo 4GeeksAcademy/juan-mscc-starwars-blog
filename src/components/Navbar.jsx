@@ -23,18 +23,14 @@ export const Navbar = () => {
 						</button>
 
 						<ul className="dropdown-menu">
-							{store.favourites.map((fav) => {
+							{store.favourites.length == 0 ? (<span>empty</span>) : store.favourites.map((fav) => {
 								return (
-									<>
-										
-											<li className='d-flex justify-content-between px-2'>
-												<Link to="/"><span>{fav.name}</span></Link>
+											<li className='d-flex justify-content-between px-2' key={fav.name}>
+												<Link to={'/' + fav.endpoint + '/' + fav.id}><span>{fav.name}</span></Link>
 
 												<i className="fa-solid fa-trash" onClick={() => dispatch({type: 'remove_favourite', payload: {name: fav.name} })}></i>
 											</li>									
 
-										
-									</>
 								)
 							})}
 						</ul>

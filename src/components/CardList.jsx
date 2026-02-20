@@ -4,7 +4,6 @@ import { Card } from "./Card";
 
 const CardList = ({title, endpoint, fields}) => {
  
-    console.log(endpoint)
     const [ entitiesList, setEntitiesList ] = useState([])
 
     /* function callSecondApi() {
